@@ -66,37 +66,6 @@ public class EntryResource {
         
         checkValidation(entryDTO);
         
-//        String checkText = entryDTO.getContent().toLowerCase();
-//        Emoji checkEmoji = entryDTO.getEmoji();
-//        String[] positiveWords = {"like","love","happy","haha","laugh","funny"};
-//        String[] negativeWords = {"angry","sad","fear","cry","lonely","hate"};
-//        
-//        Optional<BlogDTO> blogDTO = blogService.findOne(entryDTO.getBlogId());
-//        
-//        if(blogDTO.get().isPositive()) {
-//        	
-//        	if(checkEmoji.equals(Emoji.ANGRY) || checkEmoji.equals(Emoji.SAD)) {
-//            	throw new BadRequestAlertException("Invalid Emoji", ENTITY_NAME, "invalidEmoji");
-//            }
-//        	
-//            for (String word : negativeWords) {
-//                if (checkText.contains(word)) {
-//                	throw new BadRequestAlertException("Invalid Content", ENTITY_NAME, "invalidContent");
-//                }
-//            }
-//        }else {
-//        	
-//        	 if(checkEmoji.equals(Emoji.HAHA) || checkEmoji.equals(Emoji.LIKE)) {
-//             	throw new BadRequestAlertException("Invalid Emoji", ENTITY_NAME, "invalidEmoji");
-//             }
-//        	
-//            for (String word : positiveWords) {
-//                if (checkText.contains(word)) {
-//                	throw new BadRequestAlertException("Invalid Content", ENTITY_NAME, "invalidContent");
-//                }
-//            }
-//        }
-        
         EntryDTO result = entryService.save(entryDTO);
         return ResponseEntity.created(new URI("/api/entries/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
